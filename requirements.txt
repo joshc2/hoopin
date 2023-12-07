@@ -3,5 +3,4 @@ numpy
 matplotlib
 seaborn
 requests
-re
 time
