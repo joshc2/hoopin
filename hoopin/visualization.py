@@ -7,63 +7,72 @@ import pandas as pd
 
 # Assuming you have already loaded your data and defined the variables as mentioned in your previous code
 
-# Visualization 1: Scatter plot of Actual vs Predicted Wins
-plt.figure(figsize=(10, 6))
-sns.scatterplot(x=Y_test, y=Y_pred)
-plt.title('Actual vs Predicted Wins')
-plt.xlabel('Actual Wins')
-plt.ylabel('Predicted Wins')
-plt.show()
 
-# Visualization 2: Bar chart of Coefficients
-coefficients = coefficients.sort_values(ascending=True)
-coefficients = pd.Series(model.coef_, index=X.columns)
-coefficients = coefficients.sort_values(ascending=True)
+def show_visualizations():
 
-plt.figure(figsize=(10, 6))
-coefficients.plot(kind='barh')  # Use 'barh' for horizontal bar chart
-plt.title('Coefficients of the Linear Regression Model')
-plt.xlabel('Coefficient Value')
-plt.ylabel('Predictor Variables')
-plt.show()
+    """
+    See the data
+    """
+    # Visualization 1: Scatter plot of Actual vs Predicted Wins
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=Y_test, y=Y_pred)
+    plt.title('Actual vs Predicted Wins')
+    plt.xlabel('Actual Wins')
+    plt.ylabel('Predicted Wins')
+    plt.show()
 
-# Additional Evaluation Metrics
-mse = mean_squared_error(Y_test, Y_pred)
-r2 = r2_score(Y_test, Y_pred)
+    # Visualization 2: Bar chart of Coefficients
+    coefficients = coefficients.sort_values(ascending=True)
+    coefficients = pd.Series(model.coef_, index=X.columns)
+    coefficients = coefficients.sort_values(ascending=True)
 
-print("Mean Squared Error:", mse)
-print("R-squared:", r2)
+    plt.figure(figsize=(10, 6))
+    coefficients.plot(kind='barh')  # Use 'barh' for horizontal bar chart
+    plt.title('Coefficients of the Linear Regression Model')
+    plt.xlabel('Coefficient Value')
+    plt.ylabel('Predictor Variables')
+    plt.show()
 
-# RESIDUAL PLOT
-plt.figure(figsize=(10, 6))
-sns.residplot(x=Y_pred, y=Y_test, lowess=True, color="g")
-plt.title('Residual Plot')
-plt.xlabel('Predicted Wins')
-plt.ylabel('Residuals')
-plt.show()
+    # Additional Evaluation Metrics
+    mse = mean_squared_error(Y_test, Y_pred)
+    r2 = r2_score(Y_test, Y_pred)
 
-# distribution plot of residuals
-plt.figure(figsize=(10, 6))
-sns.histplot(Y_test - Y_pred, kde=True)
-plt.title('Distribution of Residuals')
-plt.xlabel('Residuals')
-plt.ylabel('Frequency')
-plt.show()
+    print("Mean Squared Error:", mse)
+    print("R-squared:", r2)
 
+    # RESIDUAL PLOT
+    plt.figure(figsize=(10, 6))
+    sns.residplot(x=Y_pred, y=Y_test, lowess=True, color="g")
+    plt.title('Residual Plot')
+    plt.xlabel('Predicted Wins')
+    plt.ylabel('Residuals')
+    plt.show()
 
-#Pair PLOT
-sns.pairplot(all_data_1[selected_columns])
-plt.suptitle('Pair Plot of Selected Columns', y=1.02)
-plt.show()
-
-# CORRELATION HEAT MAP
-plt.figure(figsize=(10, 8))
-sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
-plt.title('Correlation Heatmap of Selected Columns')
-plt.show()
+    # distribution plot of residuals
+    plt.figure(figsize=(10, 6))
+    sns.histplot(Y_test - Y_pred, kde=True)
+    plt.title('Distribution of Residuals')
+    plt.xlabel('Residuals')
+    plt.ylabel('Frequency')
+    plt.show()
 
 
-def show_heatmap(selected_columns=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L'],all_data_1=[1,2,3]):
+    #Pair PLOT
+    sns.pairplot(all_data_1[selected_columns])
+    plt.suptitle('Pair Plot of Selected Columns', y=1.02)
+    plt.show()
+
+    # CORRELATION HEAT MAP
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
+    plt.title('Correlation Heatmap of Selected Columns')
+    plt.show()
+
+    return
+
+
+
+def show_heatmap():
     plt.figure(figsize=(10, 8))
     sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
     plt.title('Correlation Heatmap of Selected Columns')

@@ -2,16 +2,31 @@ import pkg_resources
 import pandas as pd
 
 
-def load_data(name = 'basketball'):
-    """
-    Function to load data from the hoopin package.
-    Data is read in as a pandas DataFrame. In each example,
-    the first column of the dataframe is the data's labels.
 
+
+# def load_data():
+#     return pd.read_csv("./hoopin/datasets/basketball.csv")
+    
+
+    
+def load_data2():
+    return pd.read_csv("./hoopin/datasets/basketball.csv")
+
+ 
+
+# data   = pd.read_csv('./datasets/basketball.csv')
+
+
+
+
+def load_data(name = 'data'):
+    """
+    Function to load clean or raw data from package.
+    Data is read in as a pandas DataFrame.
     Parameters
     ----------
     name : string
-    ##### Options are 'iris', 'titanic', 'auto-mpg'
+    Options are 'data', and 'data_raw'
 
     Returns
     -------
@@ -19,18 +34,16 @@ def load_data(name = 'basketball'):
 
     """
 
-    if name == 'basketball':
+    if name == 'data':
         path = 'datasets/basketball.csv'
 
-    elif name == 'titanic':
-        path = 'datasets/titanic.csv'
-
-    elif name == 'auto-mpg':
-        path = 'data/auto-mpg.csv'
     else:
-        raise NameError("{} is not recognized. The only names are 'iris', 'titanic', and 'auto-mpg'.".format(name))
+        raise NameError("{} is not recognized. The only names are 'data' and 'data_raw'.".format(name))
     
 
-    data_path = pkg_resources.resource_filename('inner_hoopin', path)
+    data_path = pkg_resources.resource_filename('hoopin', path)
+
     
     return pd.read_csv(data_path)
+
+
