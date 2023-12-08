@@ -9,8 +9,8 @@ import pandas as pd
     
 
     
-def load_data2():
-    return pd.read_csv("./hoopin/datasets/basketball.csv")
+# def load_data2():
+#     return pd.read_csv("./hoopin/datasets/basketball.csv")
 
  
 
