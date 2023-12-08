@@ -52,11 +52,11 @@ selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 #ALL COLUMNS
 #all_columns = ['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', "MOV", "Pace", "TS%", 'W', 'L']
 
-def select_columns(SC=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']):
-    return SC
+# def select_columns(SC=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']):
+#     return SC
 
 # COLUMNS WE ARE KEEPING
-selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
+# selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 
 
 # Split the data into predictor variables (X) and target variable (Y)
