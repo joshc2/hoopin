@@ -52,16 +52,45 @@ selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 #ALL COLUMNS
 #all_columns = ['FG', 'FGA', 'FG%', '3P', '3PA', '3P%', '2P', '2PA', '2P%', 'FT', 'FTA', 'FT%', 'ORB', 'DRB', 'TRB', 'AST', 'STL', 'BLK', 'TOV', 'PF', 'PTS', "MOV", "Pace", "TS%", 'W', 'L']
 
-# def select_columns(SC=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']):
-#     return SC
+def select_columns(SC=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']):
+    return SC
 
 # COLUMNS WE ARE KEEPING
-# selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
+selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 
 
 # Split the data into predictor variables (X) and target variable (Y)
 def run_regression(selected_columns, all_data_1):
-    X = all_data_1[selected_columns[:-2]]  # All columns except 'W' and 'L'
+    """
+    Perform linear regression analysis on a dataset to predict the values in the 'W' column.
+
+    Parameters
+    ----------
+    all_data_1 : pandas.DataFrame
+        The input dataset.
+    selected_columns : list
+        List of column names to be used as independent variables in the regression.
+
+    Returns
+    -------
+    mse : float
+        Mean Squared Error (MSE) to evaluate the model's performance.
+    sorted_coefficients : pandas.Series
+        Coefficients of the linear regression model sorted by their absolute values,
+        indicating the importance of each variable in predicting the target.
+
+    Examples
+    --------
+    >>> run_regression(df, ['columns', 'dataset'])
+    Mean Squared Error: 0.12345
+
+    Most important variables:
+    X2    0.56789
+    X1    0.45678
+    X3    0.23456
+    """
+
+    X = all_data_1[selected_columns]  # All columns except 'W' and 'L'
     Y = all_data_1['W']
 
     # Split the data into training and testing sets
@@ -83,3 +112,4 @@ def run_regression(selected_columns, all_data_1):
     print(sorted_coefficients)
 
     return
+
