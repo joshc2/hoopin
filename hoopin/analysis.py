@@ -61,7 +61,7 @@ selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 
 # Split the data into predictor variables (X) and target variable (Y)
 def run_regression(selected_columns, all_data_1):
-    X = all_data_1[selected_columns]  # All columns except 'W' and 'L'
+    X = all_data_1[selected_columns[:-2]]  # All columns except 'W' and 'L'
     Y = all_data_1['W']
 
     # Split the data into training and testing sets
