@@ -1,24 +1,6 @@
 import pkg_resources
 import pandas as pd
 
-
-
-
-# def load_data():
-#     return pd.read_csv("./hoopin/datasets/basketball.csv")
-    
-
-    
-# def load_data2():
-#     return pd.read_csv("./hoopin/datasets/basketball.csv")
-
- 
-
-# data   = pd.read_csv('./datasets/basketball.csv')
-
-
-
-
 def load_data(name = 'data'):
     """
     Function to load clean or raw data from package.
