@@ -4,12 +4,18 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
+import pkg_resources
 
 # import hoopin
 # Assuming you have already loaded your data and defined the variables as mentioned in your previous code
 
+path = 'data/basketball.csv'
 
-all_data_1 =  pd.read_csv("/datasets/basketball.csv")
+data_path = pkg_resources.resource_filename('hoopin', path)
+
+
+all_data_1 =  pd.read_csv(data_path)
+
 selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 
 
@@ -29,18 +35,9 @@ Y_pred = model.predict(X_test)
 
 coefficients = pd.Series(model.coef_, index=X.columns)
 sorted_coefficients = coefficients.abs().sort_values(ascending=False)
-def show_actual_predicted():
-    """
-    See the data
-    """   
-    # Visualization 1: Scatter plot of Actual vs Predicted Wins
-    plt.figure(figsize=(10, 6))
-    sns.scatterplot(x=Y_test, y=Y_pred)
-    plt.title('Actual vs Predicted Wins')
-    plt.xlabel('Actual Wins')
-    plt.ylabel('Predicted Wins')
-    plt.show()
-    return    
+
+
+
 def show_barchart():
     # Visualization 2: Bar chart of Coefficients
     coefficients = coefficients.sort_values(ascending=True)
@@ -55,6 +52,21 @@ def show_barchart():
     plt.show()
     return
 
+
+
+
+def show_actual_predicted():
+    """
+    See the data
+    """   
+    # Visualization 1: Scatter plot of Actual vs Predicted Wins
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=Y_test, y=Y_pred)
+    plt.title('Actual vs Predicted Wins')
+    plt.xlabel('Actual Wins')
+    plt.ylabel('Predicted Wins')
+    plt.show()
+    return    
     # Additional Evaluation Metrics
 # def show_MSE():
 #     mse = mean_squared_error(Y_test, Y_pred)
@@ -133,3 +145,61 @@ def show_heatmap():
     """
             
     return 
+
+
+
+
+
+
+def run_regression(selected_columns, all_data_1):
+    """
+    Perform linear regression analysis on a dataset to predict the values in the 'W' column.
+
+    Parameters
+    ----------
+    all_data_1 : pandas.DataFrame
+        The input dataset.
+    selected_columns : list
+        List of column names to be used as independent variables in the regression.
+
+    Returns
+    -------
+    mse : float
+        Mean Squared Error (MSE) to evaluate the model's performance.
+    sorted_coefficients : pandas.Series
+        Coefficients of the linear regression model sorted by their absolute values,
+        indicating the importance of each variable in predicting the target.
+
+    Examples
+    --------
+    >>> run_regression(df, ['columns', 'dataset'])
+    Mean Squared Error: 0.12345
+
+    Most important variables:
+    X2    0.56789
+    X1    0.45678
+    X3    0.23456
+    """
+
+    X = all_data_1[selected_columns]  # All columns except 'W' and 'L'
+    Y = all_data_1['W']
+
+    # Split the data into training and testing sets
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+
+    # Create a linear regression model, fit it to the training data, and make predictions
+    model = LinearRegression()
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+
+    # Calculate the mean squared error (MSE) to evaluate the model's performance
+    mse = mean_squared_error(Y_test, Y_pred)
+    print("Mean Squared Error:", mse)
+
+    # Inspect the coefficients of the linear regression model to determine variable importance
+    coefficients = pd.Series(model.coef_, index=X.columns)
+    sorted_coefficients = coefficients.abs().sort_values(ascending=False)
+    print("\nMost important variables:")
+    print(sorted_coefficients)
+
+    return

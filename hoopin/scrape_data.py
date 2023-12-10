@@ -100,6 +100,6 @@ all_data = pd.concat([merged_data_2023, merged_data_2022, merged_data_2021,
                      merged_data_2020, merged_data_2019, merged_data_2018])
 
 
-
+all_data.to_csv("data/basketball.csv")
 #run this after editing all_data_1
 all_data_1 = all_data

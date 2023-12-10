@@ -16,16 +16,17 @@ def load_data(name = 'data'):
 
     """
 
-    if name == 'data':
-        path = 'datasets/basketball.csv'
+    # if name == 'data':
+    path = 'data/basketball.csv'
 
-    else:
-        raise NameError("{} is not recognized. The only names are 'data' and 'data_raw'.".format(name))
+    # else:
+    #     raise NameError("{} is not recognized. The only names are 'data' and 'data_raw'.".format(name))
     
 
     data_path = pkg_resources.resource_filename('hoopin', path)
-
     
+    # data=pd.read_csv(data_path)
+    # data.to_csv("data/basketball", index=False)
     return pd.read_csv(data_path)
 
 
