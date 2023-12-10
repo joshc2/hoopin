@@ -9,6 +9,7 @@ import time
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+import pkg_resources
 
 def scrape_data():
     # SEASON 2022-23
@@ -100,6 +101,16 @@ def scrape_data():
                         merged_data_2020, merged_data_2019, merged_data_2018])
 
 
-    all_data.to_csv("data/basketball.csv")
-    #run this after editing all_data_1
+    # data = {'Name': ['Alice', 'Bob', 'Charlie'],
+    #     'Age': [25, 30, 35],
+    #     'City': ['New York', 'San Francisco', 'Los Angeles']}
+
+    # all_data = pd.DataFrame(data)
+
+    path = 'data'
+
+    data_path = pkg_resources.resource_filename('hoopin', path)
+    
+    all_data.to_csv(data_path + "/basketball1.csv")
+    # all_data.to_csv("hoopin/data/basketball1.csv")
     return

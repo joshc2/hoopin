@@ -44,39 +44,6 @@ coefficients = coefficients.sort_values(ascending=True)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def show_actual_predicted():
     """
     See the data
@@ -91,15 +58,15 @@ def show_actual_predicted():
     return    
 
     # Additional Evaluation Metrics
-# def show_MSE():
-#     mse = mean_squared_error(Y_test, Y_pred)
-#     print("R-squared:", r2)
-#     return
+def show_MSE():
+    mse = mean_squared_error(Y_test, Y_pred)
+    print("Mean Squared Error:", mse)
+    return
 
-# def show_r2():
-#     r2 = r2_score(Y_test, Y_pred)
-#     print("Mean Squared Error:", mse)
-#     return
+def show_r2():
+    r2 = r2_score(Y_test, Y_pred)
+    print("R-squared:", r2)
+    return
 
 def show_residuals():
     # RESIDUAL PLOT

@@ -25,7 +25,6 @@ def load_data(name = 'data'):
 
     data_path = pkg_resources.resource_filename('hoopin', path)
     
-    # data=pd.read_csv(data_path)
     # data.to_csv("data/basketball", index=False)
     return pd.read_csv(data_path)
 

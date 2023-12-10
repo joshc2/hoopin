@@ -6,3 +6,5 @@ from hoopin.visualization import show_actual_predicted
 from hoopin.visualization import show_correlation_heatmap
 from hoopin.visualization import show_pairplot
 from hoopin.visualization import show_residuals
+from hoopin.visualization import show_r2
+from hoopin.visualization import show_MSE
