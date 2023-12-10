@@ -39,6 +39,35 @@ sorted_coefficients = coefficients.abs().sort_values(ascending=False)
 
 
 def show_barchart():
+
+    path = 'data/basketball.csv'
+
+    data_path = pkg_resources.resource_filename('hoopin', path)
+
+
+    all_data_1 =  pd.read_csv(data_path)
+
+    selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
+
+
+    # Split the data into predictor variables (X) and target variable (Y)
+    X = all_data_1[selected_columns[:-2]]  # All columns except 'W' and 'L'
+    Y = all_data_1['W']
+
+    # Split the data into training and testing sets
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+
+    # Create a linear regression model, fit it to the training data, and make predictions
+    model = LinearRegression()
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+
+
+
+    coefficients = pd.Series(model.coef_, index=X.columns)
+    sorted_coefficients = coefficients.abs().sort_values(ascending=False)
+
+    ######
     # Visualization 2: Bar chart of Coefficients
     coefficients = coefficients.sort_values(ascending=True)
     coefficients = pd.Series(model.coef_, index=X.columns)
@@ -67,6 +96,7 @@ def show_actual_predicted():
     plt.ylabel('Predicted Wins')
     plt.show()
     return    
+
     # Additional Evaluation Metrics
 # def show_MSE():
 #     mse = mean_squared_error(Y_test, Y_pred)
