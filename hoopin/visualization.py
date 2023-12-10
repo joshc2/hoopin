@@ -5,6 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import pkg_resources
+import statsmodels
 
 # import hoopin
 # Assuming you have already loaded your data and defined the variables as mentioned in your previous code
@@ -31,43 +32,78 @@ model = LinearRegression()
 model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
 
+# Calculate the mean squared error (MSE) to evaluate the model's performance
+mse = mean_squared_error(Y_test, Y_pred)
+print("Mean Squared Error:", mse)
 
-
+# Inspect the coefficients of the linear regression model to determine variable importance
 coefficients = pd.Series(model.coef_, index=X.columns)
 sorted_coefficients = coefficients.abs().sort_values(ascending=False)
+print("Most important variables:")
+print(sorted_coefficients)
+
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+import pandas as pd
+
+
+
+
+
+
+# Visualization 2: Bar chart of Coefficients
+coefficients = coefficients.sort_values(ascending=True)
+coefficients = pd.Series(model.coef_, index=X.columns)
+coefficients = coefficients.sort_values(ascending=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 def show_barchart():
-
-    path = 'data/basketball.csv'
-
-    data_path = pkg_resources.resource_filename('hoopin', path)
-
-
-    all_data_1 =  pd.read_csv(data_path)
-
-    selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
-
-
-    # Split the data into predictor variables (X) and target variable (Y)
-    X = all_data_1[selected_columns[:-2]]  # All columns except 'W' and 'L'
-    Y = all_data_1['W']
-
-    # Split the data into training and testing sets
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
-
-    # Create a linear regression model, fit it to the training data, and make predictions
-    model = LinearRegression()
-    model.fit(X_train, Y_train)
-    Y_pred = model.predict(X_test)
-
-
-
-    coefficients = pd.Series(model.coef_, index=X.columns)
-    sorted_coefficients = coefficients.abs().sort_values(ascending=False)
-
-    ######
     # Visualization 2: Bar chart of Coefficients
     coefficients = coefficients.sort_values(ascending=True)
     coefficients = pd.Series(model.coef_, index=X.columns)
@@ -145,3 +181,35 @@ def show_correlation_heatmap():
     return
     
 
+
+
+
+
+    # path = 'data/basketball.csv'
+
+    # data_path = pkg_resources.resource_filename('hoopin', path)
+
+
+    # all_data_1 =  pd.read_csv(data_path)
+
+    # selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
+
+
+    # # Split the data into predictor variables (X) and target variable (Y)
+    # X = all_data_1[selected_columns[:-2]]  # All columns except 'W' and 'L'
+    # Y = all_data_1['W']
+
+    # # Split the data into training and testing sets
+    # X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+
+    # # Create a linear regression model, fit it to the training data, and make predictions
+    # model = LinearRegression()
+    # model.fit(X_train, Y_train)
+    # Y_pred = model.predict(X_test)
+
+
+
+    # coefficients = pd.Series(model.coef_, index=X.columns)
+    # sorted_coefficients = coefficients.abs().sort_values(ascending=False)
+
+    ######
