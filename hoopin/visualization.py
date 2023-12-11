@@ -46,7 +46,11 @@ coefficients = coefficients.sort_values(ascending=True)
 
 def show_actual_predicted():
     """
-    See the data
+    Visualizes the relationship between actual and predicted values of a target variable.
+
+    This function creates a scatter plot to compare the actual values (Y_test) with the predicted values (Y_pred).
+    It helps in visually assessing how well a predictive model aligns with the true outcomes.
+
     """   
     # Visualization 1: Scatter plot of Actual vs Predicted Wins
     plt.figure(figsize=(10, 6))
@@ -59,16 +63,37 @@ def show_actual_predicted():
 
     # Additional Evaluation Metrics
 def show_MSE():
+    """
+    Calculates and displays the Mean Squared Error (MSE) between actual and predicted values.
+
+    The function computes the MSE, a metric that quantifies the average squared difference between actual
+    and predicted values of a target variable. A lower MSE indicates better model performance.
+    """ 
     mse = mean_squared_error(Y_test, Y_pred)
     print("Mean Squared Error:", mse)
     return
-
+ 
 def show_r2():
+    """
+    Calculates and displays the R-squared (coefficient of determination) between actual and predicted values.
+
+    The function computes the R-squared, a metric that quantifies the proportion of the variance in the
+    dependent variable that is predictable from the independent variable. A higher R-squared indicates
+    better explanatory power of the model.
+    """
+
     r2 = r2_score(Y_test, Y_pred)
     print("R-squared:", r2)
     return
 
 def show_residuals():
+    """
+    Visualizes the residuals (the differences between actual and predicted values) using a residual plot.
+
+    The function creates a residual plot to help assess the goodness of fit of a predictive model. Residuals
+    represent the vertical distances between data points and the regression line. A well-fitted model would
+    have residuals randomly scattered around zero.
+    """
     # RESIDUAL PLOT
     plt.figure(figsize=(10, 6))
     sns.residplot(x=Y_pred, y=Y_test, lowess=True, color="g")
@@ -80,6 +105,14 @@ def show_residuals():
 
 
 def show_residuals_distribution():
+    """
+    Visualizes the distribution of residuals (the differences between actual and predicted values).
+
+    The function creates a distribution plot to show the spread and shape of residuals. Understanding the
+    distribution of residuals can provide insights into the model's performance and identify any patterns
+    in the errors.
+    """
+
     # distribution plot of residuals
     plt.figure(figsize=(10, 6))
     sns.histplot(Y_test - Y_pred, kde=True)
@@ -90,6 +123,13 @@ def show_residuals_distribution():
     return
 
 def show_pairplot():
+    """
+    Visualizes pairwise relationships between selected columns in a dataset using a pair plot.
+
+    The function creates a pair plot to display scatterplots for each pair of selected columns, histograms
+    along the diagonal, and additional information like kernel density estimates.
+
+    """
     #Pair PLOT
     sns.pairplot(all_data_1[selected_columns])
     plt.suptitle('Pair Plot of Selected Columns', y=1.02)
@@ -97,6 +137,13 @@ def show_pairplot():
     return
 
 def show_correlation_heatmap():
+    """
+    Visualizes the correlation between selected columns in a dataset using a heatmap.
+
+    The function creates a correlation heatmap to illustrate the strength and direction of the linear
+    relationship between pairs of selected columns. Correlation values are annotated on the heatmap.
+
+    """
     # CORRELATION HEAT MAP
     plt.figure(figsize=(10, 8))
     sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
