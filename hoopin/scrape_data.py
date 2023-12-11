@@ -12,6 +12,38 @@ from sklearn.metrics import mean_squared_error
 import pkg_resources
 
 def scrape_data():
+ """
+    Scrapes basketball statistics data for multiple NBA seasons and saves it to a CSV file.
+
+    The function retrieves team statistics for each season, including team age, margin of victory (MOV),
+    pace, true shooting percentage (TS%), wins (W), and losses (L). The data is scraped from Basketball
+    Reference for the seasons 2022-23, 2021-22, 2020-21, 2019-20, 2018-19, and 2017-18.
+
+    The scraped data is then merged, processed, and saved to a CSV file named "basketball1.csv".
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> scrape_data()
+
+    Notes
+    -----
+    - The function uses the pandas library to manipulate and process the data.
+    - The data is scraped from Basketball Reference using URLs for each season.
+    - The 'Year' column is added to the merged data to identify the respective NBA seasons.
+    - The last row from each season's data is dropped to avoid duplicate entries.
+
+    Warning
+    -------
+    - This function depends on the structure of the Basketball Reference website.
+      Any changes to the website's structure may cause the function to break.
+
+    """
+
+
     # SEASON 2022-23
     bib_url_2023 = 'https://www.basketball-reference.com/leagues/NBA_2023.html'
     requests.get(bib_url_2023)

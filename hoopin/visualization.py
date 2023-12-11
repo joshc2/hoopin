@@ -47,66 +47,70 @@ if __name__ == '__main__':
 
 
 
-    def show_actual_predicted():
-        """
-        See the data
-        """   
-        # Visualization 1: Scatter plot of Actual vs Predicted Wins
-        plt.figure(figsize=(10, 6))
-        sns.scatterplot(x=Y_test, y=Y_pred)
-        plt.title('Actual vs Predicted Wins')
-        plt.xlabel('Actual Wins')
-        plt.ylabel('Predicted Wins')
-        plt.show()
-        return    
+def show_actual_predicted():
+    """
+    Visualizes the relationship between actual and predicted values of a target variable.
 
-        # Additional Evaluation Metrics
-    def show_MSE():
-        mse = mean_squared_error(Y_test, Y_pred)
-        print("Mean Squared Error:", mse)
-        return
+    This function creates a scatter plot to compare the actual values (Y_test) with the predicted values (Y_pred).
+    It helps in visually assessing how well a predictive model aligns with the true outcomes.
 
-    def show_r2():
-        r2 = r2_score(Y_test, Y_pred)
-        print("R-squared:", r2)
-        return
+    """   
+    # Visualization 1: Scatter plot of Actual vs Predicted Wins
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=Y_test, y=Y_pred)
+    plt.title('Actual vs Predicted Wins')
+    plt.xlabel('Actual Wins')
+    plt.ylabel('Predicted Wins')
+    plt.show()
+    return    
 
-    def show_residuals():
-        # RESIDUAL PLOT
-        plt.figure(figsize=(10, 6))
-        sns.residplot(x=Y_pred, y=Y_test, lowess=True, color="g")
-        plt.title('Residual Plot')
-        plt.xlabel('Predicted Wins')
-        plt.ylabel('Residuals')
-        plt.show()
-        return
+    # Additional Evaluation Metrics
+def show_MSE():
+    mse = mean_squared_error(Y_test, Y_pred)
+    print("Mean Squared Error:", mse)
+    return
+
+def show_r2():
+    r2 = r2_score(Y_test, Y_pred)
+    print("R-squared:", r2)
+    return
+
+def show_residuals():
+    # RESIDUAL PLOT
+    plt.figure(figsize=(10, 6))
+    sns.residplot(x=Y_pred, y=Y_test, lowess=True, color="g")
+    plt.title('Residual Plot')
+    plt.xlabel('Predicted Wins')
+    plt.ylabel('Residuals')
+    plt.show()
+    return
 
 
-    def show_residuals_distribution():
-        # distribution plot of residuals
-        plt.figure(figsize=(10, 6))
-        sns.histplot(Y_test - Y_pred, kde=True)
-        plt.title('Distribution of Residuals')
-        plt.xlabel('Residuals')
-        plt.ylabel('Frequency')
-        plt.show()
-        return
+def show_residuals_distribution():
+    # distribution plot of residuals
+    plt.figure(figsize=(10, 6))
+    sns.histplot(Y_test - Y_pred, kde=True)
+    plt.title('Distribution of Residuals')
+    plt.xlabel('Residuals')
+    plt.ylabel('Frequency')
+    plt.show()
+    return
 
-    def show_pairplot():
-        #Pair PLOT
-        sns.pairplot(all_data_1[selected_columns])
-        plt.suptitle('Pair Plot of Selected Columns', y=1.02)
-        plt.show()
-        return
+def show_pairplot():
+    #Pair PLOT
+    sns.pairplot(all_data_1[selected_columns])
+    plt.suptitle('Pair Plot of Selected Columns', y=1.02)
+    plt.show()
+    return
 
-    def show_correlation_heatmap():
-        # CORRELATION HEAT MAP
-        plt.figure(figsize=(10, 8))
-        sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
-        plt.title('Correlation Heatmap of Selected Columns')
-        plt.show()
-        return
-        
+def show_correlation_heatmap():
+    # CORRELATION HEAT MAP
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(all_data_1[selected_columns].corr(), annot=True, cmap='coolwarm', fmt=".2f")
+    plt.title('Correlation Heatmap of Selected Columns')
+    plt.show()
+    return
+    
 
 
 
