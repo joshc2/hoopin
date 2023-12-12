@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hoopin.analysis &#8212; hoopin 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for hoopin.analysis</h1><div class="highlight"><pre>
+<span></span><span class="c1"># if __name__ == &#39;main&#39;:</span>
+
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+
+<span class="c1">#ALL COLUMNS </span>
+<span class="c1">#all_columns = [&#39;FG&#39;, &#39;FGA&#39;, &#39;FG%&#39;, &#39;3P&#39;, &#39;3PA&#39;, &#39;3P%&#39;, &#39;2P&#39;, &#39;2PA&#39;, &#39;2P%&#39;, &#39;FT&#39;, &#39;FTA&#39;, &#39;FT%&#39;, &#39;ORB&#39;, &#39;DRB&#39;, &#39;TRB&#39;, &#39;AST&#39;, &#39;STL&#39;, &#39;BLK&#39;, &#39;TOV&#39;, &#39;PF&#39;, &#39;PTS&#39;, &quot;MOV&quot;, &quot;Pace&quot;, &quot;TS%&quot;, &#39;W&#39;, &#39;L&#39;]</span>
+
+<span class="c1"># COLUMNS WE ARE KEEPING</span>
+<span class="n">selected_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;3P%&#39;</span><span class="p">,</span><span class="s1">&#39;2P%&#39;</span><span class="p">,</span> <span class="s1">&#39;AST&#39;</span><span class="p">,</span><span class="s1">&#39;TRB&#39;</span><span class="p">,</span><span class="s1">&#39;STL&#39;</span><span class="p">,</span><span class="s2">&quot;TS%&quot;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">]</span>
+
+
+    <span class="c1"># Split the data into predictor variables (X) and target variable (Y)  all_data_1</span>
+<div class="viewcode-block" id="run_regression">
+<a class="viewcode-back" href="../../hoopin.html#hoopin.analysis.run_regression">[docs]</a>
+<span class="k">def</span> <span class="nf">run_regression</span><span class="p">(</span> <span class="n">all_data_1</span><span class="p">,</span><span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;3P%&#39;</span><span class="p">,</span><span class="s1">&#39;2P%&#39;</span><span class="p">,</span> <span class="s1">&#39;AST&#39;</span><span class="p">,</span><span class="s1">&#39;TRB&#39;</span><span class="p">,</span><span class="s1">&#39;STL&#39;</span><span class="p">,</span><span class="s2">&quot;TS%&quot;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform linear regression analysis on a dataset to predict the values in the &#39;W&#39; column.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    all_data_1 : pandas.DataFrame</span>
+<span class="sd">        The input dataset.</span>
+<span class="sd">    selected_columns : list</span>
+<span class="sd">        List of column names to be used as independent variables in the regression.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mse : float</span>
+<span class="sd">        Mean Squared Error (MSE) to evaluate the model&#39;s performance.</span>
+<span class="sd">    sorted_coefficients : pandas.Series</span>
+<span class="sd">        Coefficients of the linear regression model sorted by their absolute values,</span>
+<span class="sd">        indicating the importance of each variable in predicting the target.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; run_regression(df, [&#39;columns&#39;, &#39;dataset&#39;])</span>
+<span class="sd">    Mean Squared Error: 0.12345</span>
+
+<span class="sd">    Most important variables:</span>
+<span class="sd">    X2    0.56789</span>
+<span class="sd">    X1    0.45678</span>
+<span class="sd">    X3    0.23456</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">all_data_1</span><span class="p">[</span><span class="n">selected_columns</span><span class="p">]</span>  <span class="c1"># All columns except &#39;W&#39; and &#39;L&#39;</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">all_data_1</span><span class="p">[</span><span class="s1">&#39;W&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Split the data into training and testing sets</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Create a linear regression model, fit it to the training data, and make predictions</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+    <span class="n">Y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the mean squared error (MSE) to evaluate the model&#39;s performance</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error:&quot;</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+
+    <span class="c1"># Inspect the coefficients of the linear regression model to determine variable importance</span>
+    <span class="n">coefficients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">sorted_coefficients</span> <span class="o">=</span> <span class="n">coefficients</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Most important variables:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sorted_coefficients</span><span class="p">)</span>
+
+    <span class="k">return</span></div>
+
+
+
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">hoopin</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">hoopin</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Simon Li, Griffen Coburn, Joshua Cabrera.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

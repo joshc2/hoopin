@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>hoopin package &#8212; hoopin 0.0.1 documentation</title>
+    <title>hoopin &#8212; hoopin 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
     <script src="_static/documentation_options.js?v=d45e8c67"></script>
@@ -13,7 +13,8 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="hoopin" href="modules.html" />
+    <link rel="next" title="Here is a markdown file" href="temp_md.html" />
+    <link rel="prev" title="Welcome to hoopin’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -30,13 +31,44 @@
 
           <div class="body" role="main">
             
-  <section id="hoopin-package">
-<h1>hoopin package<a class="headerlink" href="#hoopin-package" title="Link to this heading">¶</a></h1>
+  <section id="hoopin">
+<h1>hoopin<a class="headerlink" href="#hoopin" title="Link to this heading">¶</a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 </section>
 <section id="module-hoopin.analysis">
 <span id="hoopin-analysis-module"></span><h2>hoopin.analysis module<a class="headerlink" href="#module-hoopin.analysis" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.analysis.run_regression">
+<span class="sig-prename descclassname"><span class="pre">hoopin.analysis.</span></span><span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_data_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['3P%',</span> <span class="pre">'2P%',</span> <span class="pre">'AST',</span> <span class="pre">'TRB',</span> <span class="pre">'STL',</span> <span class="pre">'TS%',</span> <span class="pre">'W',</span> <span class="pre">'L']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/analysis.html#run_regression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.analysis.run_regression" title="Link to this definition">¶</a></dt>
+<dd><p>Perform linear regression analysis on a dataset to predict the values in the ‘W’ column.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_data_1</strong> (<em>pandas.DataFrame</em>) – The input dataset.</p></li>
+<li><p><strong>selected_columns</strong> (<em>list</em>) – List of column names to be used as independent variables in the regression.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>mse</strong> (<em>float</em>) – Mean Squared Error (MSE) to evaluate the model’s performance.</p></li>
+<li><p><strong>sorted_coefficients</strong> (<em>pandas.Series</em>) – Coefficients of the linear regression model sorted by their absolute values,
+indicating the importance of each variable in predicting the target.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_regression</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">,</span> <span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+<span class="go">Mean Squared Error: 0.12345</span>
+</pre></div>
+</div>
+<p>Most important variables:
+X2    0.56789
+X1    0.45678
+X3    0.23456</p>
+</dd></dl>
+
 </section>
 <section id="module-hoopin.load_data">
 <span id="hoopin-load-data-module"></span><h2>hoopin.load_data module<a class="headerlink" href="#module-hoopin.load_data" title="Link to this heading">¶</a></h2>
@@ -95,6 +127,65 @@ Any changes to the website’s structure may cause the function to break.</p></l
 </section>
 <section id="module-hoopin.visualization">
 <span id="hoopin-visualization-module"></span><h2>hoopin.visualization module<a class="headerlink" href="#module-hoopin.visualization" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_MSE">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_MSE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_MSE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_MSE" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates and displays the Mean Squared Error (MSE) between actual and predicted values.</p>
+<p>The function computes the MSE, a metric that quantifies the average squared difference between actual
+and predicted values of a target variable. A lower MSE indicates better model performance.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_actual_predicted">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_actual_predicted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_actual_predicted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_actual_predicted" title="Link to this definition">¶</a></dt>
+<dd><p>Visualizes the relationship between actual and predicted values of a target variable.</p>
+<p>This function creates a scatter plot to compare the actual values (Y_test) with the predicted values (Y_pred).
+It helps in visually assessing how well a predictive model aligns with the true outcomes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_correlation_heatmap">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_correlation_heatmap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_correlation_heatmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_correlation_heatmap" title="Link to this definition">¶</a></dt>
+<dd><p>Visualizes the correlation between selected columns in a dataset using a heatmap.</p>
+<p>The function creates a correlation heatmap to illustrate the strength and direction of the linear
+relationship between pairs of selected columns. Correlation values are annotated on the heatmap.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_pairplot">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_pairplot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_pairplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_pairplot" title="Link to this definition">¶</a></dt>
+<dd><p>Visualizes pairwise relationships between selected columns in a dataset using a pair plot.</p>
+<p>The function creates a pair plot to display scatterplots for each pair of selected columns, histograms
+along the diagonal, and additional information like kernel density estimates.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_r2">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_r2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_r2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_r2" title="Link to this definition">¶</a></dt>
+<dd><p>Calculates and displays the R-squared (coefficient of determination) between actual and predicted values.</p>
+<p>The function computes the R-squared, a metric that quantifies the proportion of the variance in the
+dependent variable that is predictable from the independent variable. A higher R-squared indicates
+better explanatory power of the model.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_residuals">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_residuals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_residuals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_residuals" title="Link to this definition">¶</a></dt>
+<dd><p>Visualizes the residuals (the differences between actual and predicted values) using a residual plot.</p>
+<p>The function creates a residual plot to help assess the goodness of fit of a predictive model. Residuals
+represent the vertical distances between data points and the regression line. A well-fitted model would
+have residuals randomly scattered around zero.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hoopin.visualization.show_residuals_distribution">
+<span class="sig-prename descclassname"><span class="pre">hoopin.visualization.</span></span><span class="sig-name descname"><span class="pre">show_residuals_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/hoopin/visualization.html#show_residuals_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hoopin.visualization.show_residuals_distribution" title="Link to this definition">¶</a></dt>
+<dd><p>Visualizes the distribution of residuals (the differences between actual and predicted values).</p>
+<p>The function creates a distribution plot to show the spread and shape of residuals. Understanding the
+distribution of residuals can provide insights into the model’s performance and identify any patterns
+in the errors.</p>
+</dd></dl>
+
 </section>
 <section id="module-hoopin">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-hoopin" title="Link to this heading">¶</a></h2>
@@ -120,19 +211,24 @@ Any changes to the website’s structure may cause the function to break.</p></l
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">hoopin</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">hoopin package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">hoopin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hoopin.analysis">hoopin.analysis module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hoopin.load_data">hoopin.load_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hoopin.scrape_data">hoopin.scrape_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hoopin.visualization">hoopin.visualization module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-hoopin">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="temp_md.html">Here is a markdown file</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">hoopin</a><ul>
-      <li>Previous: <a href="modules.html" title="previous chapter">hoopin</a></li>
-  </ul></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to hoopin’s documentation!</a></li>
+      <li>Next: <a href="temp_md.html" title="next chapter">Here is a markdown file</a></li>
   </ul></li>
 </ul>
 </div>

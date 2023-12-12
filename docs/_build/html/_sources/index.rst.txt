@@ -6,11 +6,15 @@
 Welcome to hoopin's documentation!
 ==================================
 
+Here is some description of hoopin!!!!
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   README
+   hoopin
+   temp_md
 
 Indices and tables
 ==================

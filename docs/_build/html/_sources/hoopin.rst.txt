@@ -1,5 +1,5 @@
-hoopin package
-==============
+hoopin
+======
 
 Submodules
 ----------
