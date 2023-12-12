@@ -1,5 +1,5 @@
 .. hoopin documentation master file, created by
-   sphinx-quickstart on Sat Dec  9 19:27:53 2023.
+   sphinx-quickstart on Mon Dec 11 16:16:49 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -10,8 +10,7 @@ Welcome to hoopin's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-test
-
+   modules
 
 Indices and tables
 ==================

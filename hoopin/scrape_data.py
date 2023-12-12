@@ -1,18 +1,21 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from bs4 import BeautifulSoup
-import requests
-import re
-import time
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-import pkg_resources
+if __name__ == 'main':
+
+
+  import pandas as pd
+  import numpy as np
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+  from bs4 import BeautifulSoup
+  import requests
+  import re
+  import time
+  from sklearn.linear_model import LinearRegression
+  from sklearn.model_selection import train_test_split
+  from sklearn.metrics import mean_squared_error
+  import pkg_resources
 
 def scrape_data():
- """
+    """
     Scrapes basketball statistics data for multiple NBA seasons and saves it to a CSV file.
 
     The function retrieves team statistics for each season, including team age, margin of victory (MOV),
@@ -42,7 +45,7 @@ def scrape_data():
       Any changes to the website's structure may cause the function to break.
 
     """
-
+    
 
     # SEASON 2022-23
     bib_url_2023 = 'https://www.basketball-reference.com/leagues/NBA_2023.html'

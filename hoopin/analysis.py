@@ -1,4 +1,5 @@
-if __name__ == '__main__':
+if __name__ == 'main':
+
 
     import pandas as pd
     import numpy as np
@@ -20,8 +21,8 @@ if __name__ == '__main__':
     selected_columns = ['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']
 
 
-    # Split the data into predictor variables (X) and target variable (Y)
-    def run_regression(selected_columns=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L'], all_data_1):
+        # Split the data into predictor variables (X) and target variable (Y)  all_data_1
+    def run_regression( all_data_1,selected_columns=['3P%','2P%', 'AST','TRB','STL',"TS%", 'W', 'L']):
         """
         Perform linear regression analysis on a dataset to predict the values in the 'W' column.
 

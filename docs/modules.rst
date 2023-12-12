@@ -2,6 +2,6 @@ hoopin
 ======
 
 .. toctree::
-   :maxdepth: 4
+    :maxdepth: 4
 
-   hoopin
+    hoopin
