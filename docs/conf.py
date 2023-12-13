@@ -22,7 +22,7 @@ release = '0.0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 # Add extensions
-extensions = ['sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx.ext.autodoc','sphinx.ext.napoleon','myst_parser','sphinx.ext.githubpages']
+extensions = ['sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx_rtd_theme', 'sphinx.ext.autodoc','sphinx.ext.napoleon','myst_parser','sphinx.ext.githubpages']
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
