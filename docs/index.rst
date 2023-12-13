@@ -6,7 +6,8 @@
 Welcome to hoopin's documentation!
 ==================================
 
-Here is some description of hoopin!!!!
+Hoopin is a package to easily scrape updated NBA team stats data
+and conduct exploratory data analysis.
 
 .. toctree::
    :maxdepth: 2
