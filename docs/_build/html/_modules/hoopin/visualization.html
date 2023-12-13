@@ -1,33 +1,78 @@
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hoopin.visualization &mdash; hoopin 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
 
-<html lang="en" data-content_root="../../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hoopin.visualization &#8212; hoopin 0.0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
-    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
-    <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-   
-  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
+          
+          <a href="../../index.html" class="icon icon-home">
+            hoopin
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">hoopin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../hoopin.html">hoopin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../temp_md.html">Here is a markdown file</a></li>
+</ul>
 
-          <div class="body" role="main">
-            
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">hoopin</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">hoopin.visualization</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <h1>Source code for hoopin.visualization</h1><div class="highlight"><pre>
 <span></span><span class="c1"># if __name__ == &#39;main&#39;:</span>
 
@@ -87,6 +132,21 @@
 <span class="sd">    This function creates a scatter plot to compare the actual values (Y_test) with the predicted values (Y_pred).</span>
 <span class="sd">    It helps in visually assessing how well a predictive model aligns with the true outcomes.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Y_test : array-like</span>
+<span class="sd">        The actual values of the target variable (e.g., actual wins).</span>
+
+<span class="sd">    Y_pred : array-like</span>
+<span class="sd">        The predicted values of the target variable generated by a predictive model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_actual_predicted(Y_test, Y_pred)</span>
 <span class="sd">    &quot;&quot;&quot;</span>   
     <span class="c1"># Visualization 1: Scatter plot of Actual vs Predicted Wins</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -107,6 +167,23 @@
 
 <span class="sd">    The function computes the MSE, a metric that quantifies the average squared difference between actual</span>
 <span class="sd">    and predicted values of a target variable. A lower MSE indicates better model performance.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Y_test : array-like</span>
+<span class="sd">        The actual values of the target variable.</span>
+
+<span class="sd">    Y_pred : array-like</span>
+<span class="sd">        The predicted values of the target variable generated by a predictive model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_MSE(Y_test, Y_pred)</span>
+<span class="sd">    Mean Squared Error: 0.12345</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
     <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean Squared Error:&quot;</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
@@ -122,6 +199,23 @@
 <span class="sd">    The function computes the R-squared, a metric that quantifies the proportion of the variance in the</span>
 <span class="sd">    dependent variable that is predictable from the independent variable. A higher R-squared indicates</span>
 <span class="sd">    better explanatory power of the model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Y_test : array-like</span>
+<span class="sd">        The actual values of the target variable.</span>
+
+<span class="sd">    Y_pred : array-like</span>
+<span class="sd">        The predicted values of the target variable generated by a predictive model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_r2(Y_test, Y_pred)</span>
+<span class="sd">    R-squared: 0.789</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">Y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span>
@@ -138,6 +232,22 @@
 <span class="sd">    The function creates a residual plot to help assess the goodness of fit of a predictive model. Residuals</span>
 <span class="sd">    represent the vertical distances between data points and the regression line. A well-fitted model would</span>
 <span class="sd">    have residuals randomly scattered around zero.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Y_test : array-like</span>
+<span class="sd">        The actual values of the target variable.</span>
+
+<span class="sd">    Y_pred : array-like</span>
+<span class="sd">        The predicted values of the target variable generated by a predictive model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_residuals(Y_test, Y_pred)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># RESIDUAL PLOT</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -159,6 +269,22 @@
 <span class="sd">    The function creates a distribution plot to show the spread and shape of residuals. Understanding the</span>
 <span class="sd">    distribution of residuals can provide insights into the model&#39;s performance and identify any patterns</span>
 <span class="sd">    in the errors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Y_test : array-like</span>
+<span class="sd">        The actual values of the target variable.</span>
+
+<span class="sd">    Y_pred : array-like</span>
+<span class="sd">        The predicted values of the target variable generated by a predictive model.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_residuals_distribution(Y_test, Y_pred)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># distribution plot of residuals</span>
@@ -180,6 +306,22 @@
 <span class="sd">    The function creates a pair plot to display scatterplots for each pair of selected columns, histograms</span>
 <span class="sd">    along the diagonal, and additional information like kernel density estimates.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    all_data_1 : pandas.DataFrame</span>
+<span class="sd">        The input dataset containing the selected columns.</span>
+
+<span class="sd">    selected_columns : list</span>
+<span class="sd">        List of column names to be included in the pair plot.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_pairplot(all_data_1, [&#39;column1&#39;, &#39;column2&#39;, &#39;column3&#39;])</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#Pair PLOT</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">all_data_1</span><span class="p">[</span><span class="n">selected_columns</span><span class="p">])</span>
@@ -197,6 +339,21 @@
 <span class="sd">    The function creates a correlation heatmap to illustrate the strength and direction of the linear</span>
 <span class="sd">    relationship between pairs of selected columns. Correlation values are annotated on the heatmap.</span>
 
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    all_data_1 : pandas.DataFrame</span>
+<span class="sd">        The input dataset containing the selected columns.</span>
+
+<span class="sd">    selected_columns : list</span>
+<span class="sd">        List of column names to be included in the correlation heatmap.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; show_correlation_heatmap(all_data_1, [&#39;column1&#39;, &#39;column2&#39;, &#39;column3&#39;])</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># CORRELATION HEAT MAP</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -210,69 +367,31 @@
 
 </pre></div>
 
+           </div>
           </div>
-          
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Simon Li, Griffen Coburn, Joshua Cabrera.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../../index.html">hoopin</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">hoopin</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../../index.html">Documentation overview</a><ul>
-  <li><a href="../index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2023, Simon Li, Griffen Coburn, Joshua Cabrera.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
-      
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
