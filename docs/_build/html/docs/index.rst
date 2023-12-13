@@ -15,7 +15,7 @@ and conduct exploratory data analysis.
 
    README
    hoopin
-   
+   README.md
 
 Indices and tables
 ==================
